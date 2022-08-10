@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .panel{
+            display: inline-block;
+            margin-top: 10%;
+            margin-left: 20%;
+            width: 60%;
+            height: 300px;
+            border-style: double;
+            border-color: chartreuse;
+            text-align: center;
+            font-weight: bold;
+            color: firebrick;
+
+
+        }
+        .result{
+            display: inline-block;
+            position: relative;
+            height: 50px;
+            background-color: aquamarine;
+            font-weight: bold;
+            width: 100%;
+
+            
+        }
+        .question-box{
+            display: inline-block;
+            position: relative;
+            height: 50px;
+            background-color: aqua;
+            font-weight: bold;
+            color: firebrick;
+            width: 100%;
+            
+        }
+        .option-box{
+            display: inline-block;
+            position: relative;
+            background-color: darkseagreen;
+            font-weight: bold;
+            color: firebrick;
+            width: 100%;
+            height: 50px;
+            
+        }
+        .option{
+            display: inline-block;
+            background-color: lightskyblue;
+            height: 50px;
+            font-weight: bold;
+            color: firebrick;
+            height: 25px;
+        }
+        .navi{
+            display: inline-block;
+            position: relative;
+            background-color: darkcyan;
+            font-weight: bold;
+            color: firebrick;
+            width: 100%;
+            height: 50px;
+            
+        }
+        .back{
+           background-color: darkred;
+           font-weight: 300;
+           color: yellow;
+        }
+        .evaluate{
+           background-color: mediumblue;
+           font-weight: 300;
+           color: yellow;
+
+        }
+        .next{
+           background-color: darkgreen;
+           font-weight: 300;
+           color: yellow;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div class="panel">
+        <h3 style="color: chartreuse;">Start Your Test</h3>
+        <div class="result">
+            Solution
+        </div><br>
+        <div class="question-box" id="question">
+            Question is here
+        </div><br>
+        <div class="option-box">
+            <button class="option" onclick="" id="op1" >option1</button>
+      
+            <button class="option" id="op2" >option2</button>
+      
+            <button class="option" id="op3">option3</button>
+      
+            <button class="option" id="op4">option4</button>
+        </div><br>
+        <div class="navi">
+            <button class="back"> <- Back</button>
+            <button class="evaluate">Evaluate</button>
+            <button class="next">Next -></button>
+        </div><br>
+        
+    </div>
+    <script>
+        const Questions = [{
+        id: 0,
+        q: "Q1. Who is the planet between Mars and Saturn?",
+        a: [{ text: "Venus", isCorrect: false },
+            { text: "Earth", isCorrect: false },
+            { text: "Pluto", isCorrect: false },
+            { text: "Jupiter", isCorrect: true }
+        ]
+  
+    },
+    {
+        id: 1,
+        q: "Q2. The worlds biggest country by area is",
+        a: [{ text: "China", isCorrect: false, isSelected: false },
+            { text: "India", isCorrect: false },
+            { text: "Russia", isCorrect: true },
+            { text: "Canada", isCorrect: false }
+        ]
+  
+    },
+    {
+        id: 2,
+        q: "Q3. The speed of Earth around the sun in Km per sec is",
+        a: [{ text: "45", isCorrect: false },
+            { text: "56", isCorrect: false },
+            { text: "30", isCorrect: true },
+            { text: "115", isCorrect: false }
+        ]
+  
+    },
+    { id: 3,
+        q: "Q4. The dencity of water in m^3/s is",
+        a: [{ text: "120", isCorrect: false },
+            { text: "320", isCorrect: false },
+            { text: "1", isCorrect: false },
+            { text: "1000", isCorrect: true }
+        ]
+  
+    },
+    {
+        id: 4,
+        q: "Q5. The worlds biggest country by population is",
+        a: [{ text: "China", isCorrect: false, isSelected: false },
+            { text: "India", isCorrect: false },
+            { text: "Russia", isCorrect: true },
+            { text: "Canada", isCorrect: false }
+        ]
+  
+    },
+    {
+        id: 5,
+        q: "Q6. The speed of sun around the blackhole in Km per sec is",
+        a: [{ text: "450", isCorrect: false },
+            { text: "560", isCorrect: false },
+            { text: "200", isCorrect: true },
+            { text: "115", isCorrect: false }
+        ]
+  
+    },
+    {id: 6,
+        q: "Q7. Who is the planet between Mercury and Earth?",
+        a: [{ text: "Venus", isCorrect: true},
+            { text: "Uranus", isCorrect: false },
+            { text: "Pluto", isCorrect: false },
+            { text: "Jupiter", isCorrect: false}
+        ]
+  
+    },
+    {
+        id: 7,
+        q: "Q8. The volume is measure in _",
+        a: [{ text: "kg", isCorrect: false, isSelected: false },
+            { text: "meter", isCorrect: false },
+            { text: "m^3", isCorrect: true },
+            { text: "m^2", isCorrect: false }
+        ]
+  
+    },
+    {
+        id: 8,
+        q: "Q9. The product Force and Distance is_",
+        a: [{ text: "volume", isCorrect: false },
+            { text: "area", isCorrect: false },
+            { text: "moment", isCorrect: true },
+            { text: "frequency", isCorrect: false }
+        ]
+  
+    },
+    {
+        id: 9,
+        q: "Q10. The Gravitational Acceleration at earth is_",
+        a: [{ text: "7.68", isCorrect: false },
+            { text: "7.8", isCorrect: false },
+            { text: "9.81", isCorrect: true },
+            { text: "6.9", isCorrect: false }
+        ]
+    }
+  
+
+
+  
+]
+  
+
+  
+// Set start
+var start = true;
+  
+// Iterate
+function iterate(id) {
+  
+    // Getting the result display section
+    var result = document.getElementsByClassName("result");
+    result[0].innerText = "";
+  
+    // Getting the question
+    const question = document.getElementById("question");
+  
+  
+    // Setting the question text
+    question.innerText = Questions[id].q;
+  
+    // Getting the options
+    const op1 = document.getElementById('op1');
+    const op2 = document.getElementById('op2');
+    const op3 = document.getElementById('op3');
+    const op4 = document.getElementById('op4');
+  
+  
+    // Providing option text 
+    op1.innerText = Questions[id].a[0].text;
+    op2.innerText = Questions[id].a[1].text;
+    op3.innerText = Questions[id].a[2].text;
+    op4.innerText = Questions[id].a[3].text;
+  
+    // Providing the true or false value to the options
+    op1.value = Questions[id].a[0].isCorrect;
+    op2.value = Questions[id].a[1].isCorrect;
+    op3.value = Questions[id].a[2].isCorrect;
+    op4.value = Questions[id].a[3].isCorrect;
+  
+    var selected = "";
+  
+    // Show selection for op1
+    op1.addEventListener("click", () => {
+        op1.style.backgroundColor = "lightgreen";
+        op2.style.backgroundColor = "lightskyblue";
+        op3.style.backgroundColor = "lightskyblue";
+        op4.style.backgroundColor = "lightskyblue";
+        selected = op1.value;
+    })
+  
+    // Show selection for op2
+    op2.addEventListener("click", () => {
+        op1.style.backgroundColor = "lightskyblue";
+        op2.style.backgroundColor = "lightgreen";
+        op3.style.backgroundColor = "lightskyblue";
+        op4.style.backgroundColor = "lightskyblue";
+        selected = op2.value;
+    })
+  
+    // Show selection for op3
+    op3.addEventListener("click", () => {
+        op1.style.backgroundColor = "lightskyblue";
+        op2.style.backgroundColor = "lightskyblue";
+        op3.style.backgroundColor = "lightgreen";
+        op4.style.backgroundColor = "lightskyblue";
+        selected = op3.value;
+    })
+  
+    // Show selection for op4
+    op4.addEventListener("click", () => {
+        op1.style.backgroundColor = "lightskyblue";
+        op2.style.backgroundColor = "lightskyblue";
+        op3.style.backgroundColor = "lightskyblue";
+        op4.style.backgroundColor = "lightgreen";
+        selected = op4.value;
+    })
+  
+    // Grabbing the evaluate button
+    const evaluate = document.getElementsByClassName("evaluate");
+  
+    // Evaluate method
+    evaluate[0].addEventListener("click", () => {
+        if (selected == "true") {
+            result[0].innerHTML = "Correct";
+            result[0].style.color = "green";
+        } else {
+            result[0].innerHTML = "Wrong";
+            result[0].style.color = "red";
+        }
+    })
+}
+  
+if (start) {
+    iterate("0");
+}
+  
+// Next button and meth/od
+const next = document.getElementsByClassName('next')[0];
+var id = 0;
+  
+next.addEventListener("click", () => {
+    start = false;
+    if (id < 9) {
+        id++;
+        iterate(id);
+        console.log(id);
+    }
+  })
+  const back = document.getElementsByClassName('back')[0];
+  var id = 0;
+  
+  back.addEventListener("click", () => {
+    start = true;
+    if (id > 0) {
+        id--;
+        iterate(id);
+        console.log(id);
+    }
+  })
+ 
+
+
+    </script>
+</body>
+</html>
